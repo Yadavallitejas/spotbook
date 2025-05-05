@@ -1,0 +1,38 @@
+/* Basic styles for the SkillSeek application */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+/* Styles for the worker dashboard */
+.card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+.text-muted {
+    color: #6c757d;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.border {
+    border: 1px solid #dee2e6 !important;
+}
+
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
