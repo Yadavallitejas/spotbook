@@ -126,17 +126,17 @@
 
     <p><strong>Last Updated:</strong> April 13, 2025</p>
   </div>
-  <footer class="footer-section">
-    <div class="footer-title">SpotBook</div>
-    <p>Connecting you to trusted professionals near you.</p>
-    <div class="footer-links">
-      <a href="home.html">HOME</a>
-      <a href="contact.html">Contact Us</a>
-      <a href="PRIVACY.html">Privacy Policy</a>
-      <a href="Term.html">Terms & Conditions</a>
-    </div>
-    <p>&copy; 2025 SpotBook. All rights reserved.</p>
-  </footer>
+        <footer class="footer-section">
+            <div class="footer-title">SpotBook</div>
+            <p>Connecting you to trusted professionals near you.</p>
+            <div class="footer-links">
+              <a href="{% url 'home' %}">HOME</a>
+              <a href="{% url 'contact' %}">Contact Us</a>
+              <a href="{% url 'privacy' %}">Privacy Policy</a>
+              <a href="{% url 'terms' %}">Terms & Conditions</a>
+            </div>
+            <p>&copy; 2025 SpotBook. All rights reserved.</p>
+        </footer>
 
 </body>
 </html>

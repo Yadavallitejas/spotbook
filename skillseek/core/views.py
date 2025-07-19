@@ -51,7 +51,7 @@ def contact(request):
     return render(request, 'contact.html')
 
 def privacy(request):
-    return render(request, 'privacy.html')
+    return render(request, 'PRIVACY.html')
 
 def terms(request):
     return render(request, 'term.html')
@@ -194,3 +194,4 @@ def check_new_bookings(request):
         status='pending'
     ).values('id', 'category__name', 'user__username', 'user_location')
     return JsonResponse({'status': 'success', 'bookings': list(pending_bookings)})
+
