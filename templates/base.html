@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpotBook | Your Trusted Home Service Partner</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+    <!-- Custom CSS -->
+
+
+      <style>
+        /* Custom CSS for hover dropdown */
+        .dropdown:hover .dropdown-menu {
+          display: block;
+        }
+
+        /* Custom styles for search box */
+        .search-bar input.form-control {
+          border-radius: 20px 0 0 20px;
+          border: 1.5px solid rgb(255, 255, 255);
+          padding-left: 15px;
+          font-size: 1rem;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+          margin-right: 0;
+        }
+
+        .search-bar input.form-control:focus {
+          border-color:rgb(84, 84, 82);
+          box-shadow: 0 0 8px rgb(63, 63, 63);
+          outline: none;
+        }
+
+        .search-bar button.search-btn {
+          border-radius: 0 20px 20px 0;
+          border: 1.5px solid rgb(15, 6, 6);
+          color:rgb(5, 4, 4);
+          transition: background-color 0.3s ease, color 0.3s ease;
+          margin-left: 0;
+        }
+
+        .search-bar button.search-btn:hover {
+          background-color:rgb(0, 0, 0);
+          border-color: rgb(241, 253, 4);
+          color: white;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">SpotBook</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="search">
+                <form class="d-flex search-bar" method="get" action="{% url 'services' %}">
+                    <input type="text" id="serviceSearch" name="q" placeholder="Search for a service..." class="form-control me-2" aria-label="Search" />
+                    <button type="submit" class="btn btn-outline-success search-btn">
+                    <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_dashboard' %}">User Dashboard</a>
+                        </li>
+                        {% if user.workerprofile %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'worker_dashboard' %}">Worker Dashboard</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_signup' %}">Sign Up</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div style="padding-top: 70px;">
+        {% block content %}
+        {% endblock %}
+    </div>
+        
+
+        <!-- Popup Notification (Moved to base.html) -->
+        <div id="notificationPopup" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">New Booking Notification</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="notificationMessage"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="acceptButton" class="btn btn-success">Accept</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Decline</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer-section">
+            <div class="footer-title">SpotBook</div>
+            <p>Connecting you to trusted professionals near you.</p>
+            <div class="footer-links">
+              <a href="{% url 'home' %}">HOME</a>
+              <a href="{% url 'contact' %}">Contact Us</a>
+              <a href="{% url 'privacy' %}">Privacy Policy</a>
+              <a href="{% url 'terms' %}">Terms & Conditions</a>
+            </div>
+            <p>&copy; 2025 SpotBook. All rights reserved.</p>
+        </footer>
+
+        <!-- jQuery and Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Polling Script for Workers -->
+        <script>
+            
+            {% if user.is_authenticated and user.workerprofile %}
+            let lastBookingId = 0; // Track the last seen booking to avoid duplicates
+
+            function checkForNewBookings() {
+                console.log("Polling for new bookings...");
+                $.get('/check-new-bookings/', function(data) {
+                    if (data.status === 'success' && data.bookings.length > 0) {
+                        // Find the newest booking that hasn't been shown
+                        const newBooking = data.bookings.find(booking => booking.id > lastBookingId);
+                        if (newBooking) {
+                            console.log("New booking found:", newBooking);
+                            lastBookingId = newBooking.id; // Update the last seen booking ID
+                            $('#notificationMessage').text(`New booking for ${newBooking.category__name} from ${newBooking.user__username}.`);
+                            $('#acceptButton').data('booking-id', newBooking.id);
+                            new bootstrap.Modal($('#notificationPopup')).show();
+                        }
+                    }
+                }).fail(function(xhr, status, error) {
+                    console.error('Error checking bookings:', error);
+                });
+            }
+
+            // Poll every 5 seconds
+            setInterval(checkForNewBookings, 5000);
+
+            // Handle Accept button click
+            $('#acceptButton').on('click', function() {
+                const bookingId = $(this).data('booking-id');
+                console.log("Accepting booking:", bookingId);
+                $.get(`/accept/${bookingId}/`, function() {
+                    bootstrap.Modal.getInstance($('#notificationPopup')).hide();
+                    location.reload(); // Reload to update the page
+                }).fail(function(xhr, status, error) {
+                    console.error('Error accepting booking:', error);
+                    alert('Failed to accept booking. It may have already been accepted.');
+                    bootstrap.Modal.getInstance($('#notificationPopup')).hide();
+                    location.reload();
+                });
+            });
+            {% endif %}
+        </script>
+    </body>
+</html>

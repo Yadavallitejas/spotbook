@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms & Conditions | SpotBook</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      font-size: 22px;
+      margin: 0;
+    }
+
+    .container {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+      background-color: #fff;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+      border-radius: 8px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      font-size: 24px;
+      color: #222;
+    }
+
+/* Footer */
+.footer-section {
+    padding: 40px 20px;
+    background-color: #000;
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer-title {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #bbb;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+    .btn-back {
+      font-size: 16px;
+      color: #555;
+      border: none;
+      background: none;
+    }
+
+    .btn-back:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <button class="btn-back" onclick="window.history.back();"><i class="fa fa-arrow-left"></i> Back</button>
+    <h1>Terms & Conditions</h1>
+    <div></div> <!-- For spacing alignment -->
+  </header>
+
+  <div class="container">
+    <p>Welcome to SpotBook! These terms and conditions outline the rules and regulations for the use of our website and services.</p>
+
+    <h2>1. Acceptance of Terms</h2>
+    <p>By accessing this website and/or using our services, you agree to be bound by these Terms and Conditions. If you disagree with any part of the terms, please do not use SpotBook.</p>
+
+    <h2>2. Services</h2>
+    <p>SpotBook connects customers with service professionals for home cleaning, repair, and other household services. We strive to ensure quality but do not guarantee outcomes of individual services performed by third parties.</p>
+
+    <h2>3. User Responsibilities</h2>
+    <ul>
+      <li>Provide accurate information while booking services.</li>
+      <li>Ensure safety and accessibility for professionals visiting your location.</li>
+      <li>Respect the service providers and their time.</li>
+    </ul>
+
+    <h2>4. Payments & Refunds</h2>
+    <p>All payments must be made through our secure platform. Refunds are subject to service completion status and SpotBook’s discretion.</p>
+
+    <h2>5. Cancellations</h2>
+    <p>You can cancel bookings up to 2 hours in advance without penalty. Late cancellations may incur a fee.</p>
+
+    <h2>6. Limitation of Liability</h2>
+    <p>SpotBook is not liable for damages or losses resulting from service issues unless proven to be caused by our negligence. All claims must be reported within 48 hours of service completion.</p>
+
+    <h2>7. Intellectual Property</h2>
+    <p>All content on this site including logos, text, images, and software is the property of SpotBook and may not be used without permission.</p>
+
+    <h2>8. Modifications</h2>
+    <p>We may revise these Terms & Conditions at any time. Continued use of our site after changes implies acceptance.</p>
+
+    <h2>9. Governing Law</h2>
+    <p>These terms are governed by and interpreted according to the laws of India.</p>
+
+    <h2>Contact Us</h2>
+    <p>If you have any questions about these Terms and Conditions, please contact us at <a href="mailto:support@spotbook.in">support@spotbook.in</a>.</p>
+
+    <p><strong>Last Updated:</strong> April 13, 2025</p>
+  </div>
+        <footer class="footer-section">
+            <div class="footer-title">SpotBook</div>
+            <p>Connecting you to trusted professionals near you.</p>
+            <div class="footer-links">
+              <a href="{% url 'home' %}">HOME</a>
+              <a href="{% url 'contact' %}">Contact Us</a>
+              <a href="{% url 'privacy' %}">Privacy Policy</a>
+              <a href="{% url 'terms' %}">Terms & Conditions</a>
+            </div>
+            <p>&copy; 2025 SpotBook. All rights reserved.</p>
+        </footer>
+
+</body>
+</html>

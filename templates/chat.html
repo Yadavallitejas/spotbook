@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <style>
+       
+    /* Footer */
+.footer-section {
+  padding: 40px 20px;
+  background-color: #000;
+  color: white;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.footer-title {
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: #bbb;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+<!-- Add any additional custom styles here -->
+    </style>
+</head>
+<div class="card">
+    <div class="card-body">
+        <h2>Chat for Booking #{{ booking.id }}</h2>
+        <div class="chat-box" style="height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;">
+            {% for message in messages %}
+                <div style="margin-bottom: 10px; {% if message.sender == request.user %}text-align: right;{% endif %}">
+                    <p style="display: inline-block; padding: 8px; border-radius: 10px; {% if message.sender == request.user %}background-color: #007bff; color: white;{% else %}background-color: #f1f1f1;{% endif %}">
+                        <strong>{{ message.sender.username }}</strong>: {{ message.content }} <small>{{ message.timestamp }}</small>
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+        <button onclick="location.reload();" class="btn btn-secondary mt-2">Refresh</button>
+        <form method="post" class="mt-3">
+            {% csrf_token %}
+            <textarea name="content" class="form-control" rows="3" placeholder="Type your message..." required></textarea>
+            <button type="submit" class="btn btn-primary mt-2">Send</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
