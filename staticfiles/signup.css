@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('images/background.jpg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.signup-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.form-box {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.logo {
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+form input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to right, #c79750, #a87729);
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.divider {
+  margin: 20px 0;
+  color: #aaa;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #ccc;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.social-signup button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.social-signup button img {
+  width: 20px;
+  height: 20px;
+}
+
+.login-link {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #007bff;
+  text-decoration: none;
+}

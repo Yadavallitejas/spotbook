@@ -121,6 +121,7 @@ LOGIN_URL = '/login/'
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = ['static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Add this line for production
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

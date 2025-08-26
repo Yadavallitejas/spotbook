@@ -1,0 +1,30 @@
+/* Basic styles for the SkillSeek application */
+
+/* Footer styles for mobile responsiveness */
+footer {
+    padding: 10px 0; /* Adjust padding for mobile */
+    font-size: 14px; /* Adjust font size for mobile */
+}
+
+@media (max-width: 576px) {
+    footer {
+        font-size: 12px; /* Further adjust font size for smaller screens */
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 20px; /* Adjust this value based on the height of the fixed navbar */
+}
+
+.category-item {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensures all cards take the same height */
+}
+
+.card {
+    flex: 1; /* Allows the card to grow and fill the available space */
+}
