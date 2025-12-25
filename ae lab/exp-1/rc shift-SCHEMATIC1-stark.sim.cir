@@ -1,0 +1,17 @@
+** Profile: "SCHEMATIC1-stark"  [ D:\ae lab\exp-1\rc shift-SCHEMATIC1-stark.sim ] 
+
+** Creating circuit file "rc shift-SCHEMATIC1-stark.sim.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Local Libraries :
+* From [PSPICE NETLIST] section of d:\orcad\PSpice\PSpice.ini file:
+.lib "nom.lib" 
+
+*Analysis directives: 
+.AC DEC 20 1 1000mega
+.PROBE V(*) I(*) W(*) D(*) NOISE(*) 
+.INC ".\rc shift-SCHEMATIC1.net" 
+
+
+.END
