@@ -24,7 +24,7 @@ SkillSeek is a Django-based web application that connects users with skilled wor
 
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Yadavallitejas/spotbook.git
    cd skillseek
    ```
 
